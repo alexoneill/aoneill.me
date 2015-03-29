@@ -1,0 +1,1 @@
+var menuClicked = false;
