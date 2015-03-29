@@ -3,6 +3,7 @@ var connect = require('connect')
   , express = require('express')
   , subdomain = require('express-subdomain')
   , hb = require('express-handlebars')
+  , path = require('path')
   , url = require('url')
   , port = (process.env.PORT || 80)
 
@@ -13,8 +14,11 @@ var connect = require('connect')
 
 var server = express();
 server.engine('handlebars', hb());
+
 server.set('view engine', 'handlebars');
+server.set('views', path.join(__dirname, '/views'));
 server.use(connect.static(__dirname + '/static'));
+
 server.listen(port);
 
 ///////////////////////////////////////////
