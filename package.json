@@ -9,7 +9,10 @@
   "dependencies": {
     "express": "4.11.2",
     "connect": "1.9.0",
+    "body-parser": "1.12.2",
     "express-subdomain": "1.0.3",
-    "express-handlebars": "1.1.0"
+    "express-handlebars": "1.1.0",
+    "apn": "1.7.3",
+    "mongodb": "2.0.25"
   }
 }
