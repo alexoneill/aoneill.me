@@ -8,10 +8,12 @@ exports.load = function(server) {
     res.render('home');
   });
 
-  server.get('/update', function(req, res, next) {
+  server.post('/update', function(req, res) {
     exec('git pull', function(error, stdout, stderr) {
       if(error !== null)
-        res.json({success: true});
+        res.json({
+          success: true,
+        });
       else
         res.json({
           success: false,
