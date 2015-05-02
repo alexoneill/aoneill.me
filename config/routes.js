@@ -1,25 +1,27 @@
 // routes.js
 // aoneill - 04/13/15
 
-var exec = require('child_process').exec;
+var cp = require('child_process');
 
 exports.load = function(server) {
   server.get('/', function(req, res, next) {
     res.render('home');
   });
 
-  server.post('/update', function(req, res) {
-    exec('git pull', function(error, stdout, stderr) {
-      if(error !== null)
-        res.json({
-          success: true,
-        });
-      else
-        res.json({
-          success: false,
-          stdout: stdout,
-          stder: stderr
-        });
+  server.all('/update', function(req, res) {
+    var str = '';
+    var git = cp.spawn('/usr/bin/git',
+      ['-C', __dirname, 'pull']);
+    
+    git.stdout.on('data', function(chunk) {
+      str += chunk;
+    });
+
+    git.stdout.on('end', function() {
+      res.json({
+        success: true,
+        out: str
+      });
     });
   });
 
