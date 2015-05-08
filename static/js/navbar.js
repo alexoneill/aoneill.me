@@ -22,59 +22,87 @@ $(document).ready(function() {
       window.location = $(this).parent().attr("href");
   });
 
+  // Flip the boat image
+  function flipBoat($boat, $wind, dir) {
+    if(dir) {
+      $boat.attr("src", "images/sailboat-left.png");
+      $wind.attr("src", "images/wind-left.png");
+      $wind.css("left", $wind.position().left + 10);
+    }
+    else {
+      $boat.attr("src", "images/sailboat-right.png");
+      $wind.attr("src", "images/wind-right.png");
+      $wind.css("left", $wind.position().left - 10);
+    }
+  }
+
+  // Get distance for the boat
+  function boatDiff($boat, $button) {
+    var gotoPos = $button.position().left + $button.width()/2 +
+                parseFloat($button.css("padding-right").replace("px", "")) +
+                parseFloat($button.css("border-right").replace("px", "")) +
+                parseFloat($button.css("margin-right").replace("px", ""));
+
+    var boatPos = $boat.position().left + $boat.width()/2; 
+    return gotoPos - boatPos;
+  }
+
   // Sailboat effect
-  $links.click(function() {
+  var linkQueue = [];
+  var boatProgress = 0;
+  function linkAction() {
+    if(linkQueue.length === 0) return;
+
+    var $button = $(linkQueue.shift());
     var $boat = $("div#navbar > div.links > div.sailboat-track > img.boat");
-    var $button = $(this);
 
+    // Skip spurious requests
     $boat.css("left", $boat.position().left);
+    var diff = boatDiff($boat, $button);
+    if(Math.abs(diff) < 5) {
+      linkAction();
+      return;
+    }
 
-    $boat.queue(function() {
-      var gotoPos = $button.position().left + $button.width()/2 +
-                  parseFloat($button.css("padding-right").replace("px", "")) +
-                  parseFloat($button.css("border-right").replace("px", "")) +
-                  parseFloat($button.css("margin-right").replace("px", ""));
+    var wind = document.createElement('img');
+    wind.className = "wind";
 
-      var boatPos = $boat.position().left + $boat.width()/2; 
-      var diff = gotoPos - boatPos;
-  
-      if(Math.abs(diff) < 5) {
-        return;
-      }
+    $boat.parent().append(wind);
+    var $wind = $("div#navbar > div.links > div.sailboat-track > img.wind");
+    $wind.css("position", "absolute");
+    $wind.css("left", $boat.position().left - $wind.width());
 
-      var wind = document.createElement('img');
-      wind.className = "wind";
+    flipBoat($boat, $wind, diff < 0);
 
-      $boat.parent().append(wind);
-      var $wind = $("div#navbar > div.links > div.sailboat-track > img.wind");
-      $wind.css("position", "absolute");
-      $wind.css("left", $boat.position().left - $wind.width());
-
-      if(diff < 0) {
-        $boat.attr("src", "images/sailboat-left.png");
-        $wind.attr("src", "images/wind-left.png");
-        $wind.css("left", $wind.position().left + 10);
-      }
-      else if(diff > 0) {
-        $boat.attr("src", "images/sailboat-right.png");
-        $wind.attr("src", "images/wind-right.png");
-        $wind.css("left", $wind.position().left - 10);
-      }
-
-      // Make wind
-      $wind.animate({
-            left: "+=" + (diff > 0 ? "-" : "") + "10",
-            opacity: "0"
-          }, 200 * Math.log(Math.abs(diff)), function() {
-            $wind.remove();
-        });
-      
-      // Move boat
-      $boat.animate({
-          left: "+=" + diff
-        }, 350 * Math.log(Math.abs(diff)));
-          
-      $(this).dequeue();
+    // Make wind
+    $wind.animate({
+        left: "+=" + (diff > 0 ? "-" : "") + "10",
+        opacity: "0"
+      }, 200 * Math.log(Math.abs(diff)), function() {
+        $wind.remove();
     });
+    
+    // Move boat
+    var duration = 350 * Math.log(Math.abs(diff));
+    $boat.animate({
+        left: "+=" + diff
+      }, {
+        duration: 350 * Math.log(Math.abs(diff)),
+        easing: 'swing',
+        progress: function(a, p, c) {
+          boatProgress = p;
+        },
+        done: linkAction
+    });
+  }
+  
+  // Clicking link behavior
+  $links.click(function() {
+    linkQueue.push(this);
+
+    var $boat = $("div#navbar > div.links > div.sailboat-track > img.boat");
+    if($boat.is(':animated')) return;
+
+    linkAction();
   });
 });
