@@ -4,15 +4,14 @@
   "author": "Alex O'Neill <aoneill@cmu.edu>",
   "version": "0.0.1",
   "private": true,
-
   "engine": "node >= 0.6.6",
   "dependencies": {
-    "express": "4.11.2",
-    "connect": "1.9.0",
-    "body-parser": "1.12.2",
-    "express-subdomain": "1.0.3",
-    "express-handlebars": "1.1.0",
     "apn": "1.7.3",
+    "body-parser": "1.12.2",
+    "connect": "1.9.0",
+    "express": "4.11.2",
+    "express-handlebars": "1.1.0",
+    "express-subdomain": "1.0.3",
     "mongodb": "2.0.25"
   }
 }

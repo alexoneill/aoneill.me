@@ -1,17 +1,23 @@
 // subdomains.js
 // aoneill - 04/13/15
 
-var _subdomains = ['bong'];
-
 // Modules
 var path = require('path'),
+    fs = require('fs'),
     subdomain = require('express-subdomain');
 
 exports.load = function(dir, express, server) {
-  _subdomains.map(function(sub) {
-    var router = express.Router();
-    var subpath = path.join(dir, sub);
-    require(subpath + '.js').load(subpath, router);
-    server.use(subdomain(sub, router));
+  // Load all subdomains
+  fs.readdir(dir, function(err, files) {
+    files.map(function(sub) {
+      var subpath = path.join(dir, sub);
+      fs.lstat(subpath, function(err, stat) {
+        if(stat.isFile() && path.extname(subpath) === '.js') {
+          var router = express.Router();
+          require(subpath).load(subpath, router);
+          server.use(subdomain(sub, router));
+        }
+      });
+    });
   });
 }
