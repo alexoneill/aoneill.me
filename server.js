@@ -18,12 +18,12 @@ var _sass = path.join(__dirname, config.sass);
 
 // Init
 var server = express();
-server.engine('handlebars', hb({
+server.engine('.hbs', hb({
   extname: '.hbs'
 }));
 
 // Setup middleware and properties
-server.set('view engine', 'handlebars');
+server.set('view engine', '.hbs');
 server.set('views', path.join(__dirname, config.views));
 server.use(sass({
   src: _sass,
