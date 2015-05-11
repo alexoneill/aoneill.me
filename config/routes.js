@@ -3,11 +3,13 @@
 
 var cp = require('child_process');
 
-exports.load = function(server) {
-  server.get('/', function(req, res, next) {
+module.exports.load = function(server) {
+  // Home view
+  server.get('/', function(req, res) {
     res.render('home');
   });
 
+  // Git update endpoint
   server.all('/update', function(req, res) {
     var str = '';
     var git = cp.spawn('/usr/bin/git',
@@ -25,8 +27,8 @@ exports.load = function(server) {
     });
   });
 
-  // The 404 Route (ALWAYS Keep this as the last route)
-  server.get('/*', function(req, res){
+  // 404 Route
+  server.get('/*', function(req, res) {
     res.send('404');
   });
 }

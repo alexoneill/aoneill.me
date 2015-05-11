@@ -2,11 +2,11 @@
 // aoneill - 04/13/15
 
 // Modules
-var path = require('path'),
-    fs = require('fs'),
-    subdomain = require('express-subdomain');
+var subdomain = require('express-subdomain'),
+    path = require('path'),
+    fs = require('fs');
 
-exports.load = function(dir, express, server) {
+module.exports.load = function(dir, express, server) {
   // Load all subdomains
   fs.readdir(dir, function(err, files) {
     files.map(function(sub) {
