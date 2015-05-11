@@ -1,0 +1,64 @@
+// mixins.scss
+// aoneill - 05/09/15
+
+@import 'globals';
+
+// Stylized standard box shadow
+@mixin box-shadow($color) {
+  -webkit-box-shadow: 0px 1px 3px $color;
+  -moz-box-shadow: 0px 1px 3px $color;
+  -ms-box-shadow: 0px 1px 3px $color;
+  -o-box-shadow: 0px 1px 3px $color;
+  box-shadow: 0px 1px 3px $color;
+}
+
+// Center horizontally
+@mixin centerX {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+// Center vertically
+@mixin centerY {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+// Center horizontally and vertically
+@mixin centerXY {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+// Mobile-only styling
+@mixin mobile {
+  @media (max-width: $tablet-small) {
+    @content;
+  }
+}
+
+// Tablet-only styling
+@mixin tablet {
+  @media (min-width: $tablet-small) and 
+         (max-width: $screen-small) {
+    @content;
+  }
+}
+
+// Desktop-only
+@mixin desktop {
+  @media (min-width: $screen-small) {
+    @content;
+  }
+}
+
+// Handheld devices (mobile & tablet)
+@mixin handheld {
+  @media (max-width: $screen-small) {
+    @content;
+  }
+}

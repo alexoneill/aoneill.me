@@ -1,0 +1,37 @@
+// global.scss
+// aoneill - 05/09/15
+
+@import 'globals';
+
+.no-select {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  cursor: default;
+}
+
+.font {
+  font-family: $font;
+}
+
+.blue-background {
+  background: $blue-color;
+}
+
+.blue-font {
+  font-color: $blue-color;
+  color: $blue-color;
+}
+
+.white-background {
+  background: $white-color;
+}
+
+.white-font {
+  font-color: $white-color;
+  color: $white-color;
+}

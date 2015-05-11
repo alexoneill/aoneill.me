@@ -1,89 +1,111 @@
-div#navbar {
-  min-width: 500px;
-  height: 120px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 10px;
-  cursor: default;
-}
-
-div.navbar-filler {
-  height: 120px;
-  padding: 10px 0px;
-  width: 100%;
-}
-
 div.top {
   position: fixed;
   top: 0;
-  z-index: 314159;
-}
+  z-index: 314159; }
 
-div#navbar > div.logo {
-  margin-left: 20px;
-  float: left;
-  height: 120;
-}
+div#navbar {
+  width: 100%;
+  min-width: 300px;
+  margin: 0 auto;
+  padding: 10px;
+  cursor: default;
+  -webkit-box-shadow: 0px 1px 3px #779ECB;
+  -moz-box-shadow: 0px 1px 3px #779ECB;
+  -ms-box-shadow: 0px 1px 3px #779ECB;
+  -o-box-shadow: 0px 1px 3px #779ECB;
+  box-shadow: 0px 1px 3px #779ECB;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box; }
+  @media (max-width: 500px) {
+    div#navbar {
+      height: 80px; } }
+  @media (min-width: 500px) and (max-width: 1024px) {
+    div#navbar {
+      height: 150px; } }
+  @media (min-width: 1024px) {
+    div#navbar {
+      height: 100px; } }
+  @media (max-width: 1024px) {
+    div#navbar div.logo {
+      position: relative;
+      text-align: center; } }
+  @media (min-width: 1024px) {
+    div#navbar div.logo {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+      margin-left: 20px;
+      float: left; } }
+  div#navbar div.logo span.text {
+    font-size: 42pt; }
+  div#navbar div.logo span.rope {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    display: block;
+    background-image: url('/images/rope.png');
+    width: 258px;
+    height: 4px; }
+  @media (max-width: 500px) {
+    div#navbar div.links {
+      display: none; } }
+  @media (min-width: 500px) and (max-width: 1024px) {
+    div#navbar div.links {
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      display: inline-block;
+      margin-top: 20px; } }
+  @media (min-width: 1024px) {
+    div#navbar div.links {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+      margin-right: 20px;
+      float: right; } }
+  div#navbar div.links div.buttons {
+    height: 30px; }
+  div#navbar div.links div.button {
+    width: auto;
+    height: 30px;
+    float: left; }
+  div#navbar div.links div.button-content {
+    height: 16px;
+    line-height: 16px;
+    text-align: center;
+    padding: 4px;
+    font-size: 30px;
+    cursor: pointer; }
+  div#navbar div.links div.button-hover {
+    background-color: #99CCFF;
+    margin: 0 6px; }
+  div#navbar div.links div.spacer {
+    height: 30px;
+    width: 20px;
+    text-align: center;
+    float: left; }
+  div#navbar div.links div.sailboat-track {
+    height: 16px;
+    margin-top: 2px;
+    padding: 0 18px;
+    width: auto; }
+    @media (max-width: 500px) {
+      div#navbar div.links div.sailboat-track {
+        display: none; } }
+    div#navbar div.links div.sailboat-track img.boat {
+      position: absolute; }
 
-div#navbar > div.logo > img {
-  display: block;
-  margin-bottom: 5px;
-}
-
-div#navbar > div.logo > span {
-  margin-left: 20px;
-  font-size: 15px;
-  font-style: italic;
-}
-
-div#navbar > div.links {
-  margin-right: 20px;
-  float: right;
-  height: 120px;
-}
-
-div#navbar > div.links > div.buttons {
-  margin-top: 40px;
-  height: 30px;
-  width: auto;
-}
-
-div#navbar > div.links div.button {
-  width: auto;
-  height: 30px;
-  float: left;
-}
-
-div#navbar > div.links div.button-content {
-  height: 16px;
-  line-height: 16px;
-  text-align: center;
-  padding: 4px;
-  
-  font-size: 30px;
-  cursor: pointer;
-}
-
-div#navbar > div.links div.button-hover {
-  background-color: #99CCFF;
-  margin: 0 6px;
-}
-
-div#navbar > div.links div.spacer {
-  height: 30px;
-  width: 20px;
-  text-align: center;
-
-  float: left;
-}
-
-div#navbar > div.links > div.sailboat-track {
-  height: 16px;
-  margin-top: 2px;
-  padding: 0 18px;
-  width: auto;
-}
-
-div#navbar > div.links > div.sailboat-track > img.boat {
-  position: absolute;
-}
+div.navbar-filler {
+  width: 100%; }
+  @media (max-width: 500px) {
+    div.navbar-filler {
+      height: 80px; } }
+  @media (min-width: 500px) and (max-width: 1024px) {
+    div.navbar-filler {
+      height: 150px; } }
+  @media (min-width: 1024px) {
+    div.navbar-filler {
+      height: 100px; } }

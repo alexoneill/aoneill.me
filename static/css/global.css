@@ -5,33 +5,21 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-
-  cursor: default;
-}
+  cursor: default; }
 
 .font {
-  font-family: 'Ubuntu', sans-serif;
-}
+  font-family: 'Roboto', sans-serif; }
 
 .blue-background {
-  background: #779ECB;
-}
+  background: #779ECB; }
 
 .blue-font {
   font-color: #779ECB;
-  color: #779ECB;
-}
+  color: #779ECB; }
 
 .white-background {
-  background: #FFF;
-}
+  background: #FFFFFF; }
 
 .white-font {
-  font-color: #FFF;
-  color: #FFF;
-}
-
-html {
-  min-width: 950px;
-}
-
+  font-color: #FFFFFF;
+  color: #FFFFFF; }
