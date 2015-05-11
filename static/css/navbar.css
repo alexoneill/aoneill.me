@@ -58,7 +58,8 @@ div#navbar {
       left: 50%;
       transform: translateX(-50%);
       display: inline-block;
-      margin-top: 20px; } }
+      margin-top: 20px;
+      float: none; } }
   @media (min-width: 1024px) {
     div#navbar div.links {
       position: relative;

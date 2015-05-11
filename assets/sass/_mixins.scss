@@ -12,23 +12,32 @@
   box-shadow: 0px 1px 3px $color;
 }
 
+// Stylized standard box shadow
+@mixin border-radius($radius) { 
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  -o-border-radius: $radius;
+  border-radius: $radius;
+}
+
 // Center horizontally
-@mixin centerX {
-  position: relative;
+@mixin centerX($pos: relative) {
+  position: $pos;
   left: 50%;
   transform: translateX(-50%);
 }
 
 // Center vertically
-@mixin centerY {
-  position: relative;
+@mixin centerY($pos: relative) {
+  position: $pos;
   top: 50%;
   transform: translateY(-50%);
 }
 
 // Center horizontally and vertically
-@mixin centerXY {
-  position: relative;
+@mixin centerXY($pos: relative) {
+  position: $pos;
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);

@@ -1,6 +1,8 @@
 // globals.scss
 // aoneill - 05/09/15
 
+$min-width:    300px;
+
 $mobile-small: 240px;
 $mobile-large: 320px;
 $tablet-small: 500px;
@@ -12,3 +14,7 @@ $white-color:  #FFFFFF;
 $blue-color:   #779ECB;
 $link-color:   #99CCFF;
 $font:         'Roboto', sans-serif;
+
+$nav-mobile:  80px;
+$nav-tablet:  150px;
+$nav-desktop: 100px;

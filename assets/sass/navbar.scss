@@ -12,19 +12,19 @@ div.top {
 
 div#navbar {
   @include mobile {
-    height: 80px;
+    height: $nav-mobile;
   }
   
   @include tablet {
-    height: 150px;
+    height: $nav-tablet;
   }
 
   @include desktop {
-    height: 100px;
+    height: $nav-desktop;
   }
 
   width: 100%;
-  min-width: 300px;
+  min-width: $min-width;
   margin: 0 auto;
   padding: 10px;
   cursor: default;
@@ -44,7 +44,7 @@ div#navbar {
     }
 
     @include desktop {
-      @include centerY();
+      @include centerY;
       margin-left: 20px;
       float: left;
     }
@@ -54,7 +54,7 @@ div#navbar {
     }
     
     span.rope {
-      @include centerX();
+      @include centerX;
     
       display: block;
       background-image: url('/images/rope.png');
@@ -69,13 +69,14 @@ div#navbar {
     }
 
     @include tablet {
-      @include centerX();
+      @include centerX;
       display: inline-block;
       margin-top: 20px;
+      float: none;
     }
 
     @include desktop {
-      @include centerY();
+      @include centerY;
       margin-right: 20px;
       float: right;
     }
@@ -132,15 +133,15 @@ div#navbar {
 
 div.navbar-filler {
   @include mobile {
-    height: 80px;
+    height: $nav-mobile;
   }
   
   @include tablet {
-    height: 150px;
+    height: $nav-tablet;
   }
  
   @include desktop {
-    height: 100px;
+    height: $nav-desktop;
   }
   
   width: 100%;
