@@ -8,7 +8,7 @@ module.exports.load = function(server) {
   server.get('/', function(req, res) {
     res.render('home');
   });
-
+  
   // Git update endpoint
   server.all('/update', function(req, res) {
     var str = '';

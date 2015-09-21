@@ -9,15 +9,17 @@ var subdomain = require('express-subdomain'),
 module.exports.load = function(dir, express, server) {
   // Load all subdomains
   fs.readdir(dir, function(err, files) {
-    files.map(function(sub) {
-      var subpath = path.join(dir, sub);
-      fs.lstat(subpath, function(err, stat) {
-        if(stat.isFile() && path.extname(subpath) === '.js') {
-          var router = express.Router();
-          require(subpath).load(subpath, router);
-          server.use(subdomain(sub, router));
-        }
+    if(!err) {
+      files.map(function(sub) {
+        var subpath = path.join(dir, sub);
+        fs.lstat(subpath, function(err, stat) {
+          if(stat.isFile() && path.extname(subpath) === '.js') {
+            var router = express.Router();
+            require(subpath).load(subpath, router);
+            server.use(subdomain(sub, router));
+          }
+        });
       });
-    });
+    }
   });
 }
