@@ -1,8 +1,15 @@
 // config.js
 // aoneill - 05/09/15
 
+var fs = require('fs');
+
 module.exports = {
-  'port':        process.env.PORT || 80,
+  'httpPort':    process.env.HTTPPORT || 80,
+  'httpsPort':   process.env.HTTPSPORT || 443,
+  'credentials': {
+    key:  fs.readFileSync('assets/ssl/ssl.key'),
+    cert: fs.readFileSync('assets/ssl/ssl.crt')
+  },
   'src':         '/config',
   'views':       '/views',
   'subdomains':  '/subdomains',
