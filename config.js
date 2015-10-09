@@ -13,7 +13,7 @@ module.exports = {
   },
   'src':         '/config',
   'views':       '/views',
-  'subdomains':  '/subdomains',
+  'pages':       '/pages',
   'sass':        '/assets/sass',
   'static':      '/static',
   'css':         '/css'

@@ -10,7 +10,7 @@ module.exports.load = function(server) {
   });
   
   // Git update endpoint
-  server.all('/update', function(req, res) {
+  server.post('/update', function(req, res) {
     var str = '';
     var git = cp.spawn('/usr/bin/git',
       ['-C', __dirname, 'pull']);

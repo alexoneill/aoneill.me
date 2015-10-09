@@ -27,4 +27,4 @@ build/Release
 node_modules
 
 # Not ready for the public
-subdomains
+pages
