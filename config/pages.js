@@ -15,6 +15,7 @@ module.exports.load = function(dir, server, callback) {
       function done() { --counter || callback(); }
 
       files.map(function(sub) {
+        console.log(sub);
         var subpath = path.join(dir, sub);
         fs.lstat(subpath, function(err, stat) {
           if(stat.isFile() && path.extname(subpath) === '.js') {
@@ -27,6 +28,9 @@ module.exports.load = function(dir, server, callback) {
           done();
         });
       });
+    } else {
+      // No found pages, proceed
+      callback();
     }
   });
 }
