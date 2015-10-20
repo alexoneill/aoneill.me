@@ -27,7 +27,7 @@ module.exports.load = function(server) {
     });
   });
 
-  // 404 Route
+  // Last route -- 404 Route
   server.get('/*', function(req, res) {
     res.send('404');
   });

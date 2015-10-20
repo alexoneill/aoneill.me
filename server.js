@@ -9,14 +9,15 @@ var config = require('./config.js'),
     bodyParser = require('body-parser'),
     hb = require('express-handlebars'),
     sass = require('node-sass-middleware'),
-    path = require('path'),
-    url = require('url');
+    path = require('path')
 
 // Paths
-var _config = path.join(__dirname, config.src);
-var _pages = path.join(__dirname, config.pages);
+var _apps = path.join(__dirname, config.apps);
 var _static = path.join(__dirname, config.static);
 var _sass = path.join(__dirname, config.sass);
+
+// Get app info
+var apps = require(path.join(_apps, 'app.js'));
 
 // Express: Handle HTTPS requests
 var server = express();
@@ -25,8 +26,9 @@ server.engine('.hbs', hb({
 }));
 
 // Setup middleware and properties
+var views = [path.join(__dirname, config.views), _apps];
 server.set('view engine', '.hbs');
-server.set('views', path.join(__dirname, config.views));
+server.set('views', views);
 server.use(sass({
   src: _sass,
   dest: path.join(_static, config.css),
@@ -47,15 +49,15 @@ var httpServer = http.createServer(redirect);
 var httpsServer = https.createServer(config.credentials, server);
 
 // Sub-configurations, then startup
-console.log('Loading page routes...');
-require(path.join(_config, 'pages.js')).load(_pages, server, function() {
-  console.log('Loading main routes...');
-  require(path.join(_config, 'routes.js')).load(server);
+console.log('Loading apps...');
+apps.load(server);
   
-  // Start up
-  console.log('Starting on http://0.0.0.0:' + config.httpPort);
-  httpServer.listen(config.httpPort);
-  
-  console.log('Starting on https://0.0.0.0:' + config.httpsPort);
-  httpsServer.listen(config.httpsPort);
-});
+console.log('Loading main logic...');
+require(path.join(__dirname, config.routes)).load(server);
+
+// Start up
+console.log('Starting on http://0.0.0.0:' + config.httpPort);
+httpServer.listen(config.httpPort);
+
+console.log('Starting on https://0.0.0.0:' + config.httpsPort);
+httpsServer.listen(config.httpsPort);
