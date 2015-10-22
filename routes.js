@@ -12,8 +12,8 @@ module.exports.load = function(server) {
   // Git update endpoint
   server.post('/update', function(req, res) {
     var str = '';
-    var git = cp.spawn('/usr/bin/git',
-      ['-C', __dirname, 'pull']);
+    var git = cp.spawn('/usr/local/bin/aoneill.me-update',
+      [__dirname]);
     
     git.stdout.on('data', function(chunk) {
       str += chunk;
