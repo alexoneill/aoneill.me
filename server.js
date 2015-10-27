@@ -10,6 +10,7 @@ var config = require('./config.js'),
     hb = require('express-handlebars'),
     path = require('path');
     
+// Custom modules
 var styles = require('./middleware/styles.js');
 
 // Paths
@@ -26,25 +27,28 @@ server.engine('.hbs', hb({
   extname: '.hbs'
 }));
 
-// Setup middleware and properties
+// Setup for over-arching server
 var views = [path.join(__dirname, config.views), _apps];
 server.set('view engine', '.hbs');
 server.set('views', views);
+server.use(bodyParser.json());
+server.use(bodyParser.urlencoded({extended: true}));
+
+// Middle ware to handle SASS / CSS for the server and all apps
 server.use(styles({
   'webroot': '/css',
   'roots': [{ '/': __dirname }].concat(apps.getRedirects()),
   'offset': '/assets/sass',
   'out': '/static/css'
 }));
+
+// Register static paths
 server.use(express.static(_static));
 apps.getStatics().forEach(function(elem) {
   var reqPath = Object.keys(elem)[0];
   var fsPath = elem[reqPath];
   server.use(reqPath, express.static(fsPath));
-  console.log(reqPath, fsPath);
 });
-server.use(bodyParser.json());
-server.use(bodyParser.urlencoded({extended: true}));
 
 // Redirect Express: Forward HTTP requests to HTTPS
 var redirect = express();
