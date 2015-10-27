@@ -43,7 +43,7 @@ module.exports = function(options) {
       }
     }
 
-    // Noting we can do if we can't find it!
+    // Noting we can do if we don't know about it!
     if(fsLocation === null) {
       return next();
     }
@@ -53,12 +53,24 @@ module.exports = function(options) {
     var cssFile = path.join(fsLocation, out, filename + '.css');
     var exists = false
 
-    // See if it exists
+    // See if SASS file exists
+    try {
+      var stat = fs.statSync(sassFile);
+      exists = stat.isFile()
+    } catch (err) {}
+
+    // Let someone else clean up the mess
+    if(!exists) {
+      return next();
+    }
+
+    // See if css exists
+    exists = false
     try {
       var stat = fs.statSync(cssFile);
       exists = stat.isFile()
     } catch (err) {}
-    
+
     // Create it
     if(!exists) {
       var result = sass.renderSync({
