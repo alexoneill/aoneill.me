@@ -37,6 +37,12 @@ server.use(styles({
   'out': '/static/css'
 }));
 server.use(express.static(_static));
+apps.getStatics().forEach(function(elem) {
+  var reqPath = Object.keys(elem)[0];
+  var fsPath = elem[reqPath];
+  server.use(reqPath, express.static(fsPath));
+  console.log(reqPath, fsPath);
+});
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({extended: true}));
 

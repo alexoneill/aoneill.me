@@ -60,6 +60,19 @@ function getRedirects() {
   return apps;
 }
 
+// Generate a list of dictionaries of static paths mapped to file locations
+// that should be included in Express's Static search
+function getStatics() {
+  var apps = getApps();
+  apps = apps.map(function(appPath) {
+    var appName = path.basename(appPath);
+    var dict = {};
+    dict['/' + appName] = path.join(appPath, 'static');
+    return dict;
+  });
+  return apps;
+}
+
 // Load all applications and their routes
 function load(server) {
   var apps = getApps();
@@ -74,5 +87,6 @@ module.exports = {
   'viewGen': viewGen,
   'getApps': getApps,
   'getRedirects': getRedirects,
+  'getStatics': getStatics, 
   'load': load
 };
