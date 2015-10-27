@@ -8,7 +8,7 @@ var sass = require('node-sass'),
     path = require('path');
 
 module.exports = function(options) {
-  var webroot = options.webroot || '/';
+  var weboffset = options.weboffset || '/';
   var roots = options.roots || [{ '/': '/' }];
   var offset = options.offset || '/';
   var out = options.out || '/';
@@ -24,15 +24,15 @@ module.exports = function(options) {
     if(!(/.*\.css$/.test(reqPath))) {
       return next();
     }
-
-    // Remove webroot
-    if(reqPath.indexOf(webroot) === 0) {
-      reqPath = reqPath.substr(webroot.length);
-    }
-
+    
     // Get basic info
     var dirname = path.dirname(reqPath);
     var filename = path.basename(reqPath, '.css');
+
+    // Remove web offset
+    if(dirname.indexOf(weboffset) == dirname.length - weboffset.length) {
+      dirname = dirname.substr(0, dirname.length - weboffset.length);
+    }
 
     // Get location of SASS / CSS file
     var fsLocation = null

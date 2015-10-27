@@ -36,8 +36,8 @@ server.use(bodyParser.urlencoded({extended: true}));
 
 // Middle ware to handle SASS / CSS for the server and all apps
 server.use(styles({
-  'webroot': '/css',
   'roots': [{ '/': __dirname }].concat(apps.getRedirects()),
+  'weboffset': '/css',
   'offset': '/assets/sass',
   'out': '/static/css'
 }));
