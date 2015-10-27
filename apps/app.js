@@ -48,6 +48,18 @@ function getApps() {
   return files;
 }
 
+// Generate a list of dictionaries, mapping requests to where they should go
+function getRedirects() {
+  var apps = getApps();
+  apps = apps.map(function(appPath) {
+    var appName = path.basename(appPath);
+    var dict = {};
+    dict['/' + appName] = appPath;
+    return dict;
+  });
+  return apps;
+}
+
 // Load all applications and their routes
 function load(server) {
   var apps = getApps();
@@ -61,5 +73,6 @@ module.exports = {
   'routeGen': routeGen,
   'viewGen': viewGen,
   'getApps': getApps,
+  'getRedirects': getRedirects,
   'load': load
 };

@@ -8,8 +8,9 @@ var config = require('./config.js'),
     express = require('express'),
     bodyParser = require('body-parser'),
     hb = require('express-handlebars'),
-    sass = require('node-sass-middleware'),
-    path = require('path')
+    path = require('path');
+    
+var styles = require('./middleware/styles.js');
 
 // Paths
 var _apps = path.join(__dirname, config.apps);
@@ -29,10 +30,11 @@ server.engine('.hbs', hb({
 var views = [path.join(__dirname, config.views), _apps];
 server.set('view engine', '.hbs');
 server.set('views', views);
-server.use(sass({
-  src: _sass,
-  dest: path.join(_static, config.css),
-  prefix: config.css,
+server.use(styles({
+  'webroot': '/css',
+  'roots': [{ '/': __dirname }].concat(apps.getRedirects()),
+  'offset': '/assets/sass',
+  'out': '/static/css'
 }));
 server.use(express.static(_static));
 server.use(bodyParser.json());
