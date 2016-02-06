@@ -18,7 +18,7 @@ module.exports = function(options) {
     if(req.method != 'GET' && req.method != 'HEAD') {
       return next();
     }
-
+    
     // Make sure we are getting a CSS request
     var reqPath = url.parse(req.url).pathname;
     if(!(/.*\.css$/.test(reqPath))) {
@@ -33,7 +33,7 @@ module.exports = function(options) {
     if(dirname.indexOf(weboffset) == dirname.length - weboffset.length) {
       dirname = dirname.substr(0, dirname.length - weboffset.length);
     }
-
+    
     // Get location of SASS / CSS file
     var fsLocation = null
     for(var i = 0; i < roots.length; i++) {

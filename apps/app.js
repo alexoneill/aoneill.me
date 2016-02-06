@@ -4,11 +4,19 @@
 var fs = require('fs'),
     path = require('path');
 
+// Get the web path to the root of an app
+function getRoot(app) {
+  var out = path.join('/', app);
+  if(out.substr(-1) === '/')
+    out = out.substr(0, out.length - 1);
+  return out;
+}
+
 // Function generator to allow apps to easily regitser routes
 function routeGen(app) {
   return function(req) {
-    // Form path, makde sure no trailing '/'
-    req = path.join('/', app, req);
+    // Form path, make sure no trailing '/'
+    var req = path.join(getRoot(app), req);
     if(req.substr(-1) === '/')
       req = req.substr(0, req.length - 1);
     return req;
@@ -19,7 +27,7 @@ function routeGen(app) {
 function viewGen(app) {
   return function(viewPath) {
     // Form path, makde sure no leading or trailing '/'
-    viewPath = path.join(app, 'views', viewPath);
+    var viewPath = path.join(app, 'views', viewPath);
     if(viewPath.substr(0) === '/')
       viewPath = viewPath.substr(1, viewPath.length);
     if(viewPath.substr(-1) === '/')
@@ -83,6 +91,7 @@ function load(server) {
 
 // What is exposed in the module
 module.exports = {
+  'getRoot': getRoot,
   'routeGen': routeGen,
   'viewGen': viewGen,
   'getApps': getApps,
