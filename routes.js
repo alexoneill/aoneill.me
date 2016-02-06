@@ -1,12 +1,20 @@
 // routes.js
 // aoneill - 04/13/15
 
-var cp = require('child_process');
+var cp = require('child_process'),
+    path = require('path');
 
-module.exports.load = function(server) {
+module.exports.load = function(server, config) {
   // Home view
   server.get('/', function(req, res) {
     res.render('home');
+  });
+
+  // Spit out my resume!
+  server.get('/resume', function(req, res) {
+    res.sendFile('/docs/resume.pdf', {
+      root: path.join(__dirname, config.static)
+    });
   });
   
   // Git update endpoint

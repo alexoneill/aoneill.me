@@ -65,7 +65,7 @@ console.log('Loading apps...');
 apps.load(server);
   
 console.log('Loading main logic...');
-require(path.join(__dirname, config.routes)).load(server);
+require(path.join(__dirname, config.routes)).load(server, config);
 
 // Start up
 console.log('Starting on http://0.0.0.0:' + config.httpPort);
