@@ -84,9 +84,21 @@ function getStatics() {
 // Load all applications and their routes
 function load(server) {
   var apps = getApps();
-  for(var i = 0; i < apps.length; i++)
-    require(path.join(apps[i], 'routes.js')).load(
-      server, path.basename(apps[i]));
+  var util = require(path.join(__dirname, 'app.js'));
+
+  for(var i = 0; i < apps.length; i++) {
+    // Give common needs to app
+    var name = path.basename(apps[i]);
+    var app = {
+      'name': name,
+      'parent': __dirname,
+      'util': util,
+      'route': routeGen(name),
+      'view': viewGen(name)
+    }
+    
+    require(path.join(apps[i], 'routes.js')).load(server, app);
+  }
 }
 
 // What is exposed in the module
