@@ -32,6 +32,8 @@ module.exports = function(options) {
     // Remove web offset
     if(dirname.indexOf(weboffset) == dirname.length - weboffset.length) {
       dirname = dirname.substr(0, dirname.length - weboffset.length);
+      if(dirname === '')
+        dirname = '/';
     }
     
     // Get location of SASS / CSS file

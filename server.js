@@ -16,7 +16,6 @@ var styles = require('./middleware/styles.js');
 // Paths
 var _apps = path.join(__dirname, config.apps);
 var _static = path.join(__dirname, config.static);
-var _sass = path.join(__dirname, config.sass);
 
 // Get app info
 var apps = require(path.join(_apps, 'app.js'));
