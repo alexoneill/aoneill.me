@@ -21,7 +21,7 @@ module.exports.load = function(server, config) {
   server.post('/update', function(req, res) {
     var str = '';
     var git = cp.spawn('/usr/local/bin/aoneill.me-update',
-      [__dirname]);
+      [__dirname, path.join(__dirname, config.resume)]);
     
     git.stdout.on('data', function(chunk) {
       str += chunk;
