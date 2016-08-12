@@ -12,7 +12,7 @@ module.exports.load = function(server, config) {
 
   // Spit out my resume!
   server.get('/resume', function(req, res) {
-    res.sendFile('/docs/resume.pdf', {
+    res.sendFile('/docs/resume/resume.pdf', {
       root: path.join(__dirname, config.static)
     });
   });
