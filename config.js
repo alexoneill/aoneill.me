@@ -11,6 +11,7 @@ module.exports = {
   'credentials': {
     key:  fs.readFileSync(path.join(__dirname, 'assets/ssl/ssl.key')),
     cert: fs.readFileSync(path.join(__dirname, 'assets/ssl/ssl.crt'))
+  },
   'apps':        '/apps',
   'css':         '/css',
   'resume':      'static/docs/resume',
@@ -18,5 +19,4 @@ module.exports = {
   'sass':        '/assets/sass',
   'static':      '/static',
   'views':       '/views',
-  },
 };
