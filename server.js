@@ -9,7 +9,7 @@ var config = require('./config.js'),
     bodyParser = require('body-parser'),
     hb = require('express-handlebars'),
     path = require('path');
-    
+
 // Custom modules
 var styles = require('./middleware/styles.js');
 
@@ -56,13 +56,13 @@ redirect.get('*', function(req, res) {
 });
 
 // Servers
-var httpServer = http.createServer(redirect);
+var httpServer = http.createServer(server);
 var httpsServer = https.createServer(config.credentials, server);
 
 // Sub-configurations, then startup
 console.log('Loading apps...');
 apps.load(server);
-  
+
 console.log('Loading main logic...');
 require(path.join(__dirname, config.routes)).load(server, config);
 
