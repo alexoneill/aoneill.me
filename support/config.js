@@ -13,7 +13,7 @@ var config = {
   // GitHub deployment
   'github': {
     script: '/utils/update.sh',
-    path: process.env.G_PATH,
+    path: path.join('/', process.env.G_PATH),
     secret: process.env.G_SECRET
   },
 
