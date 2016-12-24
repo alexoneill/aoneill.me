@@ -6,12 +6,21 @@
   "private": true,
   "engine": "node >= 4.0.0",
   "dependencies": {
-    "apn": "1.7.3",
-    "body-parser": "^1.12.2",
-    "express": "^4.11.2",
-    "express-handlebars": "^1.1.0",
-    "mkdirp": "^0.5.1",
-    "mongodb": "^2.0.46",
-    "node-sass": "^3.3.3"
+    "bluebird": "^3.4.7",
+    "body-parser": "^1.15.2",
+    "child_process": "^1.0.2",
+    "express": "^4.14.0",
+    "express-github-webhook": "^1.0.5",
+    "express-handlebars": "^3.0.0",
+    "handlebars-helpers": "^0.7.5",
+    "http": "0.0.0",
+    "https": "^1.0.0",
+    "letsencrypt": "^2.1.8",
+    "morgan": "^1.7.0",
+    "node-sass-middleware": "^0.10.0",
+    "path": "^0.12.7",
+    "process": "^0.11.9",
+    "redirect-https": "^1.1.1",
+    "underscore": "^1.8.3"
   }
 }
