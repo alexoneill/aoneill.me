@@ -11,7 +11,6 @@ module.exports = function(server) {
     src:  config.root.sass,
     dest: config.root.sass_dest,
     prefix: config.web.css,
-    debug: true,
     outputStyle: 'compressed',
     log: console.log,
   }));
