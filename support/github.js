@@ -29,10 +29,6 @@ module.exports = function(server) {
         }
 
         console.log('GitHub: Successful update!');
-        if(stdout.includes('update')) {
-          console.log('GitHub: Quitting server...');
-          process.exit(0);
-        }
       });
     }
   });
