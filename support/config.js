@@ -8,7 +8,7 @@ var config = {
   'port':   process.env.PORT || 80,
   'sport':  process.env.SPORT || 443,
 
-  'dev':    (process.env.DEV != ""),
+  'dev':    process.env.DEV || false,
 
   // GitHub deployment
   'github': {
