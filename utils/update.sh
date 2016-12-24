@@ -20,6 +20,6 @@ git pull
 
 # Only force a reload if Node files changed
 echo $files | tr ' ' '\n' \
-  | grep -q -e "server\.js" -e "support/" && update
+  | grep -q -e "server\.js" -e "support/" -e "assets/" && update
 
 exit 0
