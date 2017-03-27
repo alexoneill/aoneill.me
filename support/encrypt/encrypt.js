@@ -4,7 +4,7 @@
 var path = require('path');
 
 var config = require(path.join('..', 'config.js')),
-    lencrypt = require('./lex.js');
+    lencrypt = require('greenlock-express');
 
 // Lets Encrypt configuration
 var lconfig = {
