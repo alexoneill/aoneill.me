@@ -6,8 +6,7 @@ var path = require('path');
 var config = require('./config.js');
 
 // Custom modules
-var encrypt = require(config.paths.encrypt),
-    express = require(config.paths.express),
+var express = require(config.paths.express),
     github = require(config.paths.github),
     routes = require(config.paths.routes);
 
@@ -24,8 +23,11 @@ module.exports = function() {
   // Configure routes
   routes(server);
 
-  // Get the servers
-  var listen = encrypt(server);
+  // Encapsulate the server
+  var listen = (function() {
+    console.log('Starting on http://0.0.0.0:' + config.port);
+    server.listen(config.port);
+  });
 
   return {
     'port': config.port,

@@ -6,8 +6,6 @@ var path = require('path');
 // Settings
 var config = {
   'port':   process.env.PORT || 80,
-  'sport':  process.env.SPORT || 443,
-
   'dev':    process.env.DEV || false,
 
   // GitHub deployment
@@ -27,7 +25,6 @@ var config = {
 
   // Physical paths (from here)
   'paths': {
-    'encrypt':     'encrypt/encrypt.js',
     'express':     'express/express.js',
     'github':      'github.js',
     'routes':      'routes/routes.js',
